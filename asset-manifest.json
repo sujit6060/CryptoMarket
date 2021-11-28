@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/CryptoMarket/static/css/main.0a431a6e.chunk.css",
-    "main.js": "/CryptoMarket/static/js/main.3ffcacd0.chunk.js",
-    "main.js.map": "/CryptoMarket/static/js/main.3ffcacd0.chunk.js.map",
+    "main.js": "/CryptoMarket/static/js/main.efc96daf.chunk.js",
+    "main.js.map": "/CryptoMarket/static/js/main.efc96daf.chunk.js.map",
     "runtime-main.js": "/CryptoMarket/static/js/runtime-main.6f68f022.js",
     "runtime-main.js.map": "/CryptoMarket/static/js/runtime-main.6f68f022.js.map",
     "static/css/2.02daa001.chunk.css": "/CryptoMarket/static/css/2.02daa001.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.02daa001.chunk.css",
     "static/js/2.e5bb8e8c.chunk.js",
     "static/css/main.0a431a6e.chunk.css",
-    "static/js/main.3ffcacd0.chunk.js"
+    "static/js/main.efc96daf.chunk.js"
   ]
 }
