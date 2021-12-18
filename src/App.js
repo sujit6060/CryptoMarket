@@ -24,7 +24,7 @@ function App() {
             <Route exact path="/CryptoMarket" element={<Homepage />}></Route>
           </Routes>
           <Routes>
-            <Route path="/coins:id" element={<Coinpage />}></Route>
+            <Route exact path="/coins/:id" element={<Coinpage />}></Route>
           </Routes>
         </div>
         ;

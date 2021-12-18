@@ -37,6 +37,7 @@ const Carousel = () => {
   };
   useEffect(() => {
     FetchTrendingCoins();
+    // eslint-disable-next-line
   }, [currency]);
 
   const items = trending.map((coin) => {
