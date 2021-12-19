@@ -1,7 +1,7 @@
 {
   "name": "crypto_hunter",
   "version": "0.1.0",
-  "homepage": "https://sujit6060.github.io/CryptoMarket",
+  "homepage": "https://sujit6060.github.io/crupto_market",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.6.0",

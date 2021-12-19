@@ -21,7 +21,7 @@ function App() {
         <div className={classes.App}>
           <Headers />
           <Routes>
-            <Route exact path="/" element={<Homepage />}></Route>
+            <Route exact path="/crupto_market" element={<Homepage />}></Route>
           </Routes>
           <Routes>
             <Route exact path="/coins/:id" element={<Coinpage />}></Route>
