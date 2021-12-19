@@ -45,7 +45,7 @@ const Headers = () => {
           <Container>
             <Toolbar>
               <Typography
-                onClick={() => nevigate("/crupto_market")}
+                onClick={() => nevigate("/CryptoMarket")}
                 className={classes.title}
                 variant="h5"
               >
