@@ -22,8 +22,6 @@ function App() {
           <Headers />
           <Routes>
             <Route exact path="/CryptoMarket" element={<Homepage />}></Route>
-          </Routes>
-          <Routes>
             <Route exact path="/coins/:id" element={<Coinpage />}></Route>
           </Routes>
         </div>
