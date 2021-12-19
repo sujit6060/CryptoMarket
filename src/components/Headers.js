@@ -49,7 +49,7 @@ const Headers = () => {
                 className={classes.title}
                 variant="h5"
               >
-                Crypto Hunter
+                Crypto_World
               </Typography>
               <Select
                 variant="outlined"
