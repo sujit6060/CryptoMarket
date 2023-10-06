@@ -1,54 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Pagination from "@material-ui/lab/Pagination";
+import axios from "axios";
 import {
   Container,
   createTheme,
-  TableCell,
+  makeStyles,
+  Paper,
+  Table,
+  TableBody,
   LinearProgress,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
   ThemeProvider,
   Typography,
-  TextField,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableContainer,
-  Table,
-  Paper,
 } from "@material-ui/core";
-import axios from "axios";
-import { CoinList } from "../config/api";
+import Pagination from "@material-ui/lab/Pagination";
 import { useHistory } from "react-router-dom";
+import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-export default function CoinsTable() {
+const useStyles = makeStyles({
+  row: {
+    backgroundColor: "#16171a",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#131111",
+    },
+    fontFamily: "Montserrat",
+  },
+  pagination: {
+    "& .MuiPaginationItem-root": {
+      color: "gold",
+    },
+  },
+});
+
+const CoinsTable = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
   const { currency, symbol } = CryptoState();
-
-  const useStyles = makeStyles({
-    row: {
-      backgroundColor: "#16171a",
-      cursor: "pointer",
-      "&:hover": {
-        backgroundColor: "#131111",
-      },
-      fontFamily: "Montserrat",
-    },
-    pagination: {
-      "& .MuiPaginationItem-root": {
-        color: "gold",
-      },
-    },
-  });
-
   const classes = useStyles();
   const history = useHistory();
 
@@ -63,19 +62,22 @@ export default function CoinsTable() {
 
   const fetchCoins = async () => {
     setLoading(true);
-    const { data } = await axios.get(CoinList(currency));
-    console.log(data);
-
-    setCoins(data);
-    setLoading(false);
+    try {
+      const { data } = await axios.get(CoinList(currency));
+      setCoins(data);
+    } catch (error) {
+      console.error("Error fetching coins:", error);
+      setCoins([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchCoins();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency]);
 
-  const handleSearch = () => {
+  const filteredCoins = () => {
     return coins.filter(
       (coin) =>
         coin.name.toLowerCase().includes(search) ||
@@ -122,7 +124,7 @@ export default function CoinsTable() {
               </TableHead>
 
               <TableBody>
-                {handleSearch()
+                {filteredCoins()
                   .slice((page - 1) * 10, (page - 1) * 10 + 10)
                   .map((row) => {
                     const profit = row.price_change_percentage_24h > 0;
@@ -157,9 +159,7 @@ export default function CoinsTable() {
                             >
                               {row.symbol}
                             </span>
-                            <span style={{ color: "darkgrey" }}>
-                              {row.name}
-                            </span>
+                            <span style={{ color: "darkgrey" }}>{row.name}</span>
                           </div>
                         </TableCell>
                         <TableCell align="right">
@@ -169,7 +169,7 @@ export default function CoinsTable() {
                         <TableCell
                           align="right"
                           style={{
-                            color: profit > 0 ? "rgb(14, 203, 129)" : "red",
+                            color: profit ? "rgb(14, 203, 129)" : "red",
                             fontWeight: 500,
                           }}
                         >
@@ -193,7 +193,7 @@ export default function CoinsTable() {
 
         {/* Comes from @material-ui/lab */}
         <Pagination
-          count={(handleSearch()?.length / 10).toFixed(0)}
+          count={(filteredCoins().length / 10).toFixed(0)}
           style={{
             padding: 20,
             width: "100%",
@@ -209,4 +209,6 @@ export default function CoinsTable() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default CoinsTable;

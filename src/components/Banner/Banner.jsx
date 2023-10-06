@@ -1,3 +1,4 @@
+import React from "react";
 import { Container, makeStyles, Typography } from "@material-ui/core";
 import Carousel from "./Carousel";
 
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Banner() {
+function CryptoBanner() {
   const classes = useStyles();
 
   return (
@@ -60,4 +61,4 @@ function Banner() {
   );
 }
 
-export default Banner;
+export default CryptoBanner;

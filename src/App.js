@@ -4,6 +4,7 @@ import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import CoinPage from "./Pages/CoinPage";
 import Header from "./components/Header";
+import React from "react";
 
 const useStyles = makeStyles(() => ({
   App: {

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   AppBar,
   Container,
@@ -6,11 +7,7 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import {
-  createTheme,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core/styles";
+import { createTheme, makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 
@@ -36,7 +33,6 @@ const darkTheme = createTheme({
 function Header() {
   const classes = useStyles();
   const { currency, setCurrency } = CryptoState();
-
   const history = useHistory();
 
   return (
@@ -51,11 +47,10 @@ function Header() {
             >
               Crypto_World
             </Typography>
-            {/* <Button color="inherit">Login</Button> */}
             <Select
               variant="outlined"
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="currency-label"
+              id="currency-select"
               value={currency}
               style={{ width: 100, height: 40, marginLeft: 15 }}
               onChange={(e) => setCurrency(e.target.value)}
